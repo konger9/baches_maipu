@@ -89,7 +89,7 @@ def crear_mapa(map_data):
                     popup=folium.Popup(popup_html, max_width=300)
                 ).add_to(cluster)
 
-            st_folium(m, width="100%", height=600, returned_objects=[])
+            st_folium(m, width="100%", height=500, returned_objects=[])
     
     except Exception as e:
         st.error(f"Ocurrió un error al generar el mapa: {e}")
@@ -113,7 +113,17 @@ for tipo in tipos_disponibles:
         tipos_seleccionados.append(tipo)
 
 st.subheader("🗺️ Mapa de Baches en Maipú")
+st.markdown(
+    "<i>Nota:</i> Puede existir una pequeña diferencia en las coordenadas con Google Maps, puedes visitar las coordenadas exactas al clickear en un punto.",
+    unsafe_allow_html=True
+)
+
+colores_leyenda = ' '.join([
+        f'<span style="display:inline-block; background-color:{color}; border-radius:50%; width:10px; height:10px; margin-right:5px; vertical-align: middle;"></span>{name}'
+        for name, color in TIPO_COLORES.items()
+])
+
+st.markdown(f"**Leyenda:** <br> {colores_leyenda}", unsafe_allow_html=True)
 
 df_filtrado = df[df[TIPO].isin(tipos_seleccionados)]
 crear_mapa(df_filtrado)
-st.html(f"<i>Nota:</i> Puede existir una pequeña diferencia en las coordenadas con Google Maps, puedes visitar las coordenadas exactas al clickear en un punto.")
