@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import folium
-from streamlit_folium import st_folium
+from streamlit_folium import folium_static
 from folium.plugins import MarkerCluster
 
 DATA_PATH = 'data/baches.csv'
@@ -18,7 +18,9 @@ TIPO_COLORES = {
 
 st.set_page_config(
     page_title="Baches en Maipú",
-    layout="wide"
+    layout="wide",
+    page_icon="🗺️",
+    initial_sidebar_state="expanded"
 )
 
 @st.cache_data
@@ -89,7 +91,7 @@ def crear_mapa(map_data):
                     popup=folium.Popup(popup_html, max_width=300)
                 ).add_to(cluster)
 
-            st_folium(m, width="100%", height=500, returned_objects=[])
+            folium_static(m, width=1000, height=500)
     
     except Exception as e:
         st.error(f"Ocurrió un error al generar el mapa: {e}")
