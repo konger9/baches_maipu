@@ -13,7 +13,8 @@ TIPO = 'tipo'
 TIPO_COLORES = {
     'Hoyo': '#dd4231',
     'Grieta': '#17b85a',
-    'Levantamiento de Suelo': '#2441e9'
+    'Levantamiento de Suelo': '#2441e9',
+    'Resalto dañado': "#f8ff24"
 }
 
 st.set_page_config(
@@ -99,9 +100,18 @@ def crear_mapa(map_data):
 with st.spinner('Cargando datos de baches...'):
     df = cargar_datos()
 
-st.sidebar.title("Hola ✌️!")
-st.sidebar.caption("Esta es una recopilación de baches (hoyos, grietas y levantamientos de suelo) que hay en Maipú.")
-st.sidebar.markdown("### Filtros")
+st.sidebar.title("¡Bienvenido! ✌️")
+st.sidebar.markdown("""
+Esta es una aplicación que muestra una recopilación de baches en la comuna de **Maipú**, incluyendo:
+
+- **Hoyos.**
+- **Grietas.**
+- **Levantamientos de suelo.**
+- **Resaltos en mal estado.**
+
+Cada punto en el mapa representa un reporte georreferenciado, acompañado de una imagen y un enlace directo a Google Maps para facilitar su ubicación.
+""")
+st.sidebar.header("Filtros")
 tipos_disponibles = sorted(df[TIPO].dropna().unique())
 
 if "tipos_seleccionados" not in st.session_state:
@@ -115,10 +125,6 @@ for tipo in tipos_disponibles:
         tipos_seleccionados.append(tipo)
 
 st.subheader("🗺️ Mapa de Baches en Maipú")
-st.markdown(
-    "<i>Nota:</i> Puede existir una pequeña diferencia en las coordenadas con Google Maps, puedes visitar las coordenadas exactas al clickear en un punto.",
-    unsafe_allow_html=True
-)
 
 colores_leyenda = ' '.join([
         f'<span style="display:inline-block; background-color:{color}; border-radius:50%; width:10px; height:10px; margin-right:5px; vertical-align: middle;"></span>{name}'
@@ -129,3 +135,8 @@ st.markdown(f"**Leyenda:** <br> {colores_leyenda}", unsafe_allow_html=True)
 
 df_filtrado = df[df[TIPO].isin(tipos_seleccionados)]
 crear_mapa(df_filtrado)
+
+st.markdown(
+    "<i>Nota:</i> Puede existir una pequeña diferencia en las coordenadas con Google Maps, puedes visitar las coordenadas exactas al clickear en un punto.",
+    unsafe_allow_html=True
+)
