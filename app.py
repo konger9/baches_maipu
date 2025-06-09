@@ -75,7 +75,7 @@ def crear_mapa(map_data):
             return
 
         with st.spinner('Construyendo Mapa...'):
-            m = folium.Map(location=[-33.5101, -70.7577], zoom_start=14)
+            m = folium.Map(location=[-33.5101, -70.7577], zoom_start=13)
             cluster = MarkerCluster().add_to(m)
 
             for _, row in map_data_valid.iterrows():
