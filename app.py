@@ -11,9 +11,8 @@ LONGITUD = 'lng'
 TIPO = 'tipo'
 
 TIPO_COLORES = {
-    'Hoyo': '#dd4231',
-    'Grieta': '#17b85a',
-    'Levantamiento de Suelo': '#2441e9',
+    'Bache': '#dd4231',
+    'Grieta': '#2441e9',
     'Resalto dañado': "#f8ff24"
 }
 
@@ -102,11 +101,10 @@ with st.spinner('Cargando datos de baches...'):
 
 st.sidebar.title("¡Bienvenido! ✌️")
 st.sidebar.markdown("""
-Esta es una aplicación que muestra una recopilación de baches en la comuna de **Maipú**, incluyendo:
+Esta es una aplicación que muestra una recopilación de puntos en mal estado en la comuna de **Maipú**, incluyendo:
 
-- **Hoyos.**
+- **Baches / Hoyos.**
 - **Grietas.**
-- **Levantamientos de suelo.**
 - **Resaltos en mal estado.**
 
 Cada punto en el mapa representa un reporte georreferenciado, acompañado de una imagen y un enlace directo a Google Maps para facilitar su ubicación.
