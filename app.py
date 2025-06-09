@@ -23,6 +23,17 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+hide_buttons = """
+    <style>
+    .stAppToolbar {
+        visibility: hidden;
+        display: none;           
+    }        
+    </style>
+"""
+
+st.markdown(hide_buttons, unsafe_allow_html=True)
+
 @st.cache_data
 def cargar_datos(path=DATA_PATH):
     df = pd.read_csv(path, sep=';', encoding='utf-8')
