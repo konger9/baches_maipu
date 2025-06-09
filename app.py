@@ -25,7 +25,7 @@ st.set_page_config(
 
 hide_buttons = """
     <style>
-    .stAppToolbar {
+    .stAppToolbar, ._profileContainer_gzau3_53 {
         visibility: hidden;
         display: none;           
     }        
