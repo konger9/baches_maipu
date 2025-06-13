@@ -42,7 +42,6 @@ def cargar_datos(path=DATA_PATH):
 def crear_texto_popup(row):
     """Genera el contenido HTML del popup para un marcador."""
     popup_text = ""
-
     lat = row.get(LATITUD)
     lng = row.get(LONGITUD)
     tipo = row.get(TIPO)
@@ -54,14 +53,12 @@ def crear_texto_popup(row):
     if pd.notna(lat) and pd.notna(lng):
         popup_text += f"<b>Latitud:</b> {lat}<br>"
         popup_text += f"<b>Longitud:</b> {lng}<br>"
-        # Agregar botón para abrir en Google Maps
         popup_text += f"""
         <a href="https://www.google.com/maps/search/?api=1&query={lat},{lng}" 
         target="_blank" 
         style="font-size: 12px; color: #3366cc; text-decoration: none;">
         &raquo Abrir en Google Maps
-        </a><br>
-        """
+        </a><br>"""
 
     if url_img and pd.notna(url_img):
         popup_text += f"""
